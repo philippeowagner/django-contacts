@@ -22,7 +22,7 @@ class Company(models.Model):
 	web_site = GenericRelation('WebSite')
 	street_address = GenericRelation('StreetAddress')
 	special_date = GenericRelation('SpecialDate')
-	note = GenericRelation(Comment, object_id_field='object_pk'z)
+	note = GenericRelation(Comment, object_id_field='object_pk')
 	
 	date_added = models.DateTimeField(_('date added'), auto_now_add=True)
 	date_modified = models.DateTimeField(_('date modified'), auto_now=True)
