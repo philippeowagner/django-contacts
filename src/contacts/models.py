@@ -12,6 +12,7 @@ from organizations.models import Organization
 class Company(models.Model):
 	"""Company model."""
 	owner = models.ForeignKey(Organization, help_text="Record owner")
+	dirty = models.BooleanField( help_text="Record needs human interaction")
 	name = models.CharField(_('name'), max_length=200)
 	nickname = models.CharField(_('nickname'), max_length=50, blank=True,
 		null=True)
@@ -67,6 +68,7 @@ class Company(models.Model):
 class Person(models.Model):
 	"""Person model."""
 	owner = models.ForeignKey(Organization, help_text="Record owner")
+	dirty = models.BooleanField( help_text="Record needs human interaction")
 	first_name = models.CharField(_('first name'), max_length=100)
 	last_name = models.CharField(_('last name'), max_length=200)
 	middle_name = models.CharField(_('middle name'), max_length=200, blank=True, null=True)
@@ -133,6 +135,7 @@ class Person(models.Model):
 class Group(models.Model):
 	"""Group model."""
 	owner = models.ForeignKey(Organization, help_text="Record owner")
+	dirty = models.BooleanField( help_text="Record needs human interaction")
 	name = models.CharField(_('name'), max_length=200)
 	slug = models.SlugField(_('slug'), max_length=50, unique=True)
 	about = models.TextField(_('about'), blank=True)
