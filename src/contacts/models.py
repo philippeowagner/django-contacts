@@ -11,14 +11,14 @@ from organizations.models import Organization
 
 class Company(models.Model):
 	"""Company model."""
-    owner = models.ForeignKey(Organization, help_text="Record owner") 
+	owner = models.ForeignKey(Organization, help_text="Record owner")
 	name = models.CharField(_('name'), max_length=200)
 	nickname = models.CharField(_('nickname'), max_length=50, blank=True,
 		null=True)
 	slug = models.SlugField(_('slug'), max_length=50, unique=True)
 	about = models.TextField(_('about'), blank=True, null=True)
-	logo = models.ImageField(_('photo'), upload_to='contacts/companies/', blank=True)	
-
+	logo = models.ImageField(_('photo'), upload_to='contacts/companies/', blank=True)
+	
 	phone_number = GenericRelation('PhoneNumber')
 	email_address = GenericRelation('EmailAddress')
 	instant_messenger = GenericRelation('InstantMessenger')
@@ -36,37 +36,37 @@ class Company(models.Model):
 		verbose_name = _('company')
 		verbose_name_plural = _('companies')
 	
-    def save(self, *args, **kwargs):
-        self.slug = str(self.owner.id)+"-"+self.slug
-        super(Company, self).save(*args, **kwargs)
-        
+	def save(self, *args, **kwargs):
+		self.slug = str(self.owner.id)+"-"+self.slug
+		super(Company, self).save(*args, **kwargs)
+	
 	def __unicode__(self):
 		return u"%s" % self.name
 	
 	@permalink
 	def get_absolute_url(self):
 		return ('contacts_company_detail', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 	
 	@permalink
 	def get_update_url(self):
 		return ('contacts_company_update', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 	
 	@permalink
 	def get_delete_url(self):
 		return ('contacts_company_delete', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 
 class Person(models.Model):
 	"""Person model."""
-    owner = models.ForeignKey(Organization, help_text="Record owner") 
+	owner = models.ForeignKey(Organization, help_text="Record owner")
 	first_name = models.CharField(_('first name'), max_length=100)
 	last_name = models.CharField(_('last name'), max_length=200)
 	middle_name = models.CharField(_('middle name'), max_length=200, blank=True, null=True)
@@ -98,10 +98,10 @@ class Person(models.Model):
 		verbose_name = _('person')
 		verbose_name_plural = _('people')
 	
-    def save(self, *args, **kwargs):
-        self.slug = str(self.owner.id)+"-"+self.slug
-        super(Person, self).save(*args, **kwargs)
-        
+	def save(self, *args, **kwargs):
+		self.slug = str(self.owner.id)+"-"+self.slug
+		super(Person, self).save(*args, **kwargs)
+	
 	def __unicode__(self):
 		return self.fullname
 	
@@ -112,27 +112,27 @@ class Person(models.Model):
 	@permalink
 	def get_absolute_url(self):
 		return ('contacts_person_detail', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 	
 	@permalink
 	def get_update_url(self):
 		return ('contacts_person_update', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 	
 	@permalink
 	def get_delete_url(self):
 		return ('contacts_person_delete', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 
 class Group(models.Model):
 	"""Group model."""
-    owner = models.ForeignKey(Organization, help_text="Record owner") 
+	owner = models.ForeignKey(Organization, help_text="Record owner")
 	name = models.CharField(_('name'), max_length=200)
 	slug = models.SlugField(_('slug'), max_length=50, unique=True)
 	about = models.TextField(_('about'), blank=True)
@@ -150,32 +150,32 @@ class Group(models.Model):
 		ordering = ('name',)
 		verbose_name = _('group')
 		verbose_name_plural = _('groups')
-
-    def save(self, *args, **kwargs):
-        self.slug = str(self.owner.id)+"-"+self.slug
-        super(Group, self).save(*args, **kwargs)
-        	
+	
+	def save(self, *args, **kwargs):
+		self.slug = str(self.owner.id)+"-"+self.slug
+		super(Group, self).save(*args, **kwargs)
+	
 	def __unicode__(self):
 		return u"%s" % self.name
 	
 	@permalink
 	def get_absolute_url(self):
 		return ('contacts_group_detail', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 	
 	@permalink
 	def get_update_url(self):
 		return ('contacts_group_update', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 	
 	@permalink
 	def get_delete_url(self):
 		return ('contacts_group_delete', None, {
-		    'pk': self.pk,
+			'pk': self.pk,
 			'slug': self.slug,
 		})
 
@@ -283,11 +283,11 @@ class WebSite(models.Model):
 		limit_choices_to={'app_label': 'contacts'})
 	object_id = models.IntegerField(db_index=True)
 	content_object = generic.GenericForeignKey()
-
+	
 	url = models.URLField(_('URL'))
 	location = models.CharField(_('location'), max_length=6,
 		choices=LOCATION_CHOICES, default='work')
-
+	
 	date_added = models.DateTimeField(_('date added'), auto_now_add=True)
 	date_modified = models.DateTimeField(_('date modified'), auto_now=True)
 	
