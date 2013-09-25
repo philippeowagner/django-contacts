@@ -21,3 +21,18 @@ Thanks
 .. _Python: http://python.org/
 .. _Django: http://djangoproject.com/
 
+
+Drop all tables
+---------------
+
+drop table contacts_companies ;
+drop table contacts_email_addresses ;
+drop table contacts_groups ;
+drop table contacts_groups_companies ;
+drop table contacts_groups_people ;
+drop table contacts_instant_messengers ;
+drop table contacts_people ;
+drop table contacts_phone_numbers ;
+drop table contacts_special_dates ;
+drop table contacts_street_addresses ;
+drop table contacts_web_sites ;
