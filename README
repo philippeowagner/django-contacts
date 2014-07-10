@@ -36,3 +36,4 @@ drop table contacts_phone_numbers ;
 drop table contacts_special_dates ;
 drop table contacts_street_addresses ;
 drop table contacts_web_sites ;
+drop table contacts_country ;
